@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+name = "GISAPI-SDK"
+version = "0.1.0"
+description = "GISAPI SDK enabling geospatial data search and discovery"
+long_description = "file: README.md"
+long_description_content_type = "text/markdown"
+url = "https://github.com/OmniverseXYZ/gisapi-sdk-python"
+author = "Parker Dinkins"
+author_email = "parkerdinkins@gmail.com"
+license='GNU General Public License v3 (GPLv3)',
+classifiers=[
+    'Development Status :: 3 - Alpha',
+    'Intended Audience :: Developers',
+    'Topic :: Software Development :: Build Tools',
+    'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+],
+keywords = "gis api sdk"
+packages = find:
+install_requires = [
+    "requests"
+]
+
+[tool.setuptools.scripts]
+# If your package has command line scripts, define them here
+# script_name = 'yourpackage.module:function'
+
+[tool.black]
+line-length = 88
+target-version = ['py36', 'py37', 'py38', 'py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
