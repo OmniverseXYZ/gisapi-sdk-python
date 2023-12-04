@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='GISAPI-SDK',
-    version='0.1.07',
+    version='0.1.2',
     author='Parker Dinkins',
     author_email='parkerdinkins@gmail.com',
     description='GISAPI SDK enabling geospatial data search and discovery',

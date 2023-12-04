@@ -1,4 +1,5 @@
 import requests
+import json
 
 class GISAPIClient:
     def __init__(self):
@@ -40,13 +41,67 @@ class GISAPIClient:
         """
         req_url = f"{self.base_url}/category/{category}"
         return self._make_request(req_url)
+    
+    def parse_layer_details(self, response_data):
+        """
+        Parses layer details from the API response.
+        :param response_data: The JSON response data.
+        :return: Parsed layer details.
+        """
+        layer_details = []
+        for item in response_data["new_layer_details"]:
+            detail = {
+                "category": item["CATEGORY"],
+                "crs": item["CRS"],
+                "url": item["URL"],
+                "layer": item["LAYER"],
+                "type": item["TYPE"],
+                "host": item["HOSTURL"],
+                #"extent": json.loads(item["EXTENT"].replace("'", "\""))  # Safely parse the string
+            }
+            layer_details.append(detail)
+        return layer_details
 
-    def get_data_by_id(self, record_id):
+    def parse_xata_details(self, response_data):
         """
-        NOT YET IMPLEMENTED
-        Retrieves data for a specific record ID.
-        :param record_id: The ID of the record to retrieve.
-        :return: Data for the specified record.
+        Parses xata details from the API response.
+        :param response_data: The JSON response data.
+        :return: Parsed xata details.
         """
-        req_url = f"{self.base_url}/data/record/{record_id}"
-        return self._make_request(req_url)
+        xata_details = []
+        for item in response_data["new_layer_details"]:
+            xata = item.get("xata", {})
+            xata_detail = {
+                "createdAt": xata.get("createdAt"),
+                "updatedAt": xata.get("updatedAt"),
+                "score": xata.get("score")
+            }
+            xata_details.append(xata_detail)
+        return xata_details
+
+    def get_layer_urls(self, response_data):
+        """
+        Extracts and returns all the layer URLs from the API response.
+        :param response_data: The JSON response data.
+        :return: List of layer URLs.
+        """
+        urls = []
+        for item in response_data.get("new_layer_details", []):
+            url = item.get("URL")
+            if url:
+                urls.append(url)
+        return urls
+    
+    def get_host_urls(self, response_data):
+        """
+        Extracts and returns all the Host URLs from the API response.
+        :param response_data: The JSON response data.
+        :return: List of layer URLs.
+        """
+        urls = []
+        for item in response_data.get("new_layer_details", []):
+            url = item.get("HOSTURL")
+            if url:
+                urls.append(url)
+        urls = list(set(urls))
+        return urls

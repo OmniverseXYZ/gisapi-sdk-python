@@ -1,17 +1,29 @@
 # gisapi-sdk-python
 Python SDK for GISAPI.io
 
+# Install 
+```console
+pip install gisapi-sdk
+```
+
 ## Usage
-Not currently on PyPi (coming soon).
-clone repo into project or download and move gisapi.py file into project. 
 ```python
-import gisapi
+from gisapi import client
 
-client = gisapi.GISAPIClient()
+api = client.GISAPIClient()
 
-# regular search query. returns 200 results
-search_results = client.search_data("Florida")
+# regular search query. returns 200 raw results data
+search_results = api.search_results = client.search_data("Florida")
 
-# returns 200 results from given category
-category_results = client.get_data_by_category("Education and Research")
+# category search. returns 200 raw results from given category
+category_results = api.category_results = client.get_data_by_category("Education and Research")
+
+# returns dictionary of layer results in a list
+layer_details = api.parse_layer_details(search_results)
+
+# returns just a list of layer urls
+layer_urls = api.get_layer_urls(search_results)
+
+# returns list of host urls with no duplicates
+host_urls = api.get_host_urls(search_results)
 ```
