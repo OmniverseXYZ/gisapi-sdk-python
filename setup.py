@@ -13,7 +13,8 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
-        'Topic :: Software Development :: Build Tools',
+        'Topic :: Scientific/Engineering',
+        'Topic :: Scientific/Engineering :: GIS',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
@@ -24,7 +25,7 @@ setup(
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
     ],
-    keywords='gis api sdk',
+    keywords='gis api sdk data',
     packages=find_packages(),
     install_requires=[
         'requests',
