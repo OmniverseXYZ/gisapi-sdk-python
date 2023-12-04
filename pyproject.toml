@@ -27,7 +27,6 @@ classifiers=[
     'Programming Language :: Python :: 3.12',
 ]
 keywords = "gis api sdk"
-packages = find:
 install_requires = [
     "requests"
 ]
