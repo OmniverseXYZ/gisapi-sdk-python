@@ -13,10 +13,10 @@ from gisapi import client
 api = client.GISAPIClient()
 
 # regular search query. returns 200 raw results data
-search_results = api.search_results = client.search_data("Florida")
+search_results = api.search_data("Florida")
 
 # category search. returns 200 raw results from given category
-category_results = api.category_results = client.get_data_by_category("Education and Research")
+category_results = api.get_data_by_category("Education and Research")
 
 # returns dictionary of layer results in a list
 layer_details = api.parse_layer_details(search_results)
