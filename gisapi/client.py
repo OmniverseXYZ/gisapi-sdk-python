@@ -3,7 +3,7 @@ import json
 
 class GISAPIClient:
     def __init__(self):
-        self.base_url = "https://www.gisapi.io/api/data"
+        self.base_url = "https://gisapi.io/api/data"
 
     def _make_request(self, url):
         """
